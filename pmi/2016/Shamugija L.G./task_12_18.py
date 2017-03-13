@@ -130,7 +130,7 @@ def congrat_winner(the_winner, computer, human):
         print("Неожиданный поворот!")
          
 def main():
-    
+    print("\t\tЭто инструкция для игры в 'Крестики-нолики':")
     instructions()
     computer, human = pieces()
     turn = X
