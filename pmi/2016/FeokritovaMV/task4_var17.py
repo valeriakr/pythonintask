@@ -23,3 +23,4 @@ print('Год смерти: ', YearOfDeath)
 print('Возраст: ', Age)
 print('Область интересов: ', AreaOfInterest)
 input('\n\nPress Enter')
+
