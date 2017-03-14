@@ -15,3 +15,4 @@ if psevdo == pravilno:
 else:
 	print ('Не верно. Правильно: ', name+' - '+pravilno)
 input ('\nPress Enter')
+
