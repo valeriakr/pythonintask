@@ -1,9 +1,7 @@
 #Задача 12. Вариант 18.
-#
-
+#Доработайте игру "Крестики-нолики". (см. М.Доусон Программируем на Python гл. 6).
 #Shamugija L.G.
-#13.03.2017
-
+#08.04.2017
 X="X"
 O="O"
 Empty=" "
@@ -27,7 +25,7 @@ def instructions():
     Приготовься к бою, жалкий человечишка. Вот вот начнется решающее сражение. \n
     """)
     
- def ask_yes_no(question):
+def ask_yes_no(question):
     response = None
     while response not in ("Да", "Нет"):
         response = input(question)
@@ -80,6 +78,7 @@ def winner(board):
         if Empty not in board:
             return draw
     return None
+    
      
 def human_move(board, human):
     legal = legal_moves(board)
@@ -87,29 +86,18 @@ def human_move(board, human):
     while move not in legal:
         move = ask_number("Твой ход. Выбери поле (0-8):", 0, Square_number)
         if move not in legal:
-            print("\n-.- Серьезно? Ты не видешь, что поле занято? Выбери другое поле\n")
+            print("\n-.- Серьезно? Ты не видишь, что поле занято? Выбери другое поле\n")
     return move
      
 def computer_move(board, computer, human):
     board = board[:]
-    best_step = (4, 0, 2, 6, 8, 1, 3, 5, 7)
     print("Я выберу поле № ")
-    for move in legal_moves(board):
-        board[move] = computer
-        if winner(board) == computer:
-            print(move)
-            return move
-        board[move] = Empty
-    for move in legal_moves(board):
-        board[move] = human
-        if winner(board) == human:
-            print(move)
-            return move
-        board[move] = Empty
-    for move in best_step:
-        if move in legal_moves(board):
-            print(move)
-            return move
+    ways = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
+    for row in ways:
+        for cell in row:
+            if board[cell] == Empty:
+                board[cell] = computer
+                return cell
              
 def next_turn(turn):
     if turn == X:
@@ -118,17 +106,17 @@ def next_turn(turn):
         return X
          
 def congrat_winner(the_winner, computer, human):
-    if the_winner != draw:
+     if the_winner != draw:
         print("Три", the_winner, "!\n")
-    else:
+     else:
         print("Ничья!\n")
-    if the_winner == computer:
+     if the_winner == computer:
         print("Я победил! И как ты только мог надеяться одержать надо мной победу? Глупец!")
-    elif the_winner == human:
+     elif the_winner == human:
         print("Ты выиграл! Но даже не расчитывай, что это повториться вновь! Дуракам везет..")
-    elif the_winner == draw:
+     elif the_winner == draw:
         print("Неожиданный поворот!")
-         
+
 def main():
     print("\t\tЭто инструкция для игры в 'Крестики-нолики':")
     instructions()
