@@ -30,7 +30,7 @@ def instructions():
  def ask_yes_no(question):
     response = None
     while response not in ("Да", "Нет"):
-        response = input(question).lower()
+        response = input(question)
     return response
  
 def ask_number(question, low, high):
